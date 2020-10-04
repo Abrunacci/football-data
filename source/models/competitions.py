@@ -1,9 +1,9 @@
 from sqlalchemy import Column, String
 
-from .base import BaseModel
+from .base import BaseDBModel
 
 
-class CompetitionModel(BaseModel):
+class CompetitionModel(BaseDBModel):
     """Competitons model class representation."""
     __tablename__ = 'competitions'
     name = Column(String, nullable=False)
