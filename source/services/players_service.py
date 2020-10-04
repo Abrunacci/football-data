@@ -22,7 +22,7 @@ class PlayerService:
     
     @staticmethod
     def get_all():
-        """Get player by id.
+        """Get all.
         This function calls the get_all function from 
         PlayerRepository and returns a list of player instances.
         
