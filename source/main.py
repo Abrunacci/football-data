@@ -1,10 +1,10 @@
 from fastapi import FastAPI
-from source.routers import competition, players, teams
+from source.routers import competitions, players, teams
 
 app = FastAPI()
 
 
-app.include_router(competition.router)
+app.include_router(competitions.router)
 app.include_router(players.router)
 app.include_router(teams.router)
 
