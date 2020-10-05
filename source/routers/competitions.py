@@ -9,12 +9,12 @@ from source.schemas.competitions_schemas import CompetitionSchema
 router = APIRouter()
 
 
-@router.get('/competitions/{competition_id}', 
+@router.get('/competitions/{competition_code}', 
             tags=['Competitions'], 
             response_model=CompetitionSchema)
-async def get_competition(competition_id: int):
-    competition = CompetitionService.get_competition_by_id(
-        competition_id=competition_id
+async def get_competition(competition_code: str):
+    competition = CompetitionService.get_competition_by_code(
+        competition_code=competition_code
     )
     return competition
 

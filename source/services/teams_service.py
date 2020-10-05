@@ -1,4 +1,6 @@
 from source.repositories.teams_repository import TeamRepository
+from .competitions_teams_services import CompetitionTeamService
+
 
 class TeamService:
     """Team Service class representation."""
@@ -32,3 +34,22 @@ class TeamService:
         """
         teams = TeamRepository().get_all()
         return teams
+
+    def create_teams_from_competition(self, data:str=None, competition:int=None):
+        all_teams = list()
+        for team_data in data:
+            new_team = {
+                'id': team_data.get('id'),
+                'name': team_data.get('name'),
+                'tla': team_data.get('tla'),
+                'email': team_data.get('email'),
+                'area_name': team_data.get('area').get('name')
+            }
+            if not TeamRepository().get_by_id(team_data.get('id')):
+                TeamRepository().create(data=new_team)
+            all_teams.append(team_data)
+            CompetitionTeamService.create_from_imported_data(
+                    team_id=team_data.get('id'),
+                    competition_id=competition
+            )
+        return all_teams

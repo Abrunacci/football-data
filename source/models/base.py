@@ -15,7 +15,9 @@ DB_PORT = int(environ.get('POSTGRES_PORT'))
 DB_HOST = environ.get('POSTGRES_HOST')
 
 engine = create_engine(
-    f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}'
+    f'postgresql+psycopg2://{DB_USER}:{DB_PASS}@{DB_HOST}:{DB_PORT}/{DB_NAME}',
+    pool_size=50, 
+    max_overflow=200
 )
 
 

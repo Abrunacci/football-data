@@ -1,5 +1,5 @@
 from typing import List
-from source.models.base import SessionLocal
+from source.models.base import SessionLocal, engine
 
 class BaseRepository:
     """Base repository class representation."""
@@ -17,7 +17,7 @@ class BaseRepository:
         return result
 
     def get_by_id(self, id:int) -> List:
-        """Get by filters.
+        """Get by id.
         This functions returns a list of items found on the database
         using the received id.
 
@@ -30,3 +30,12 @@ class BaseRepository:
         """
         result = self.db.query(self.model).get(id)
         return result
+
+    def create(self, data:dict):
+        """Create.
+        This function add a model to database.
+        """
+        item = self.model(**data)
+        self.db.add(item)
+        self.db.commit()
+        return item
