@@ -35,7 +35,23 @@ class TeamService:
         teams = TeamRepository().get_all()
         return teams
 
-    def create_teams_from_competition(self, data:str=None, competition:int=None):
+    def create_teams_from_competition(self, 
+                                      data:list=None,
+                                      competition:int=None):
+        """Create teams from competition.
+        This functions calls the teams repository and creates the
+        teams on database if doesn't exists and then calls the
+        CompetitionTeam service for the creation of relations.
+
+        Arguments:
+            data : list
+                A list with all the teams for a competition.
+            competition : int
+                An integer that represents the competition id.
+        Returns:
+            all_teams : list
+                A list that contains all the teams created.
+        """
         all_teams = list()
         for team_data in data:
             new_team = {

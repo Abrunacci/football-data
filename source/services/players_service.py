@@ -38,6 +38,15 @@ class PlayerService:
 
     @staticmethod
     def create_players(team_id:int=None, team_players:list=None):
+        """Create players.
+        This function calls the repository function for player creation
+        and then calls the TeamPlayerService to create the team relation.
+        Arguments:
+            team_id : int
+                An integer that represents the team id.
+            team_players: list
+                A list that contains all the player objects for that team.
+        """
         for player in team_players:
             new_player = {
                 'id': player.get('id'),
@@ -58,6 +67,18 @@ class PlayerService:
 
     @staticmethod
     def count_players_by_league_code(code:str):
+        """Count players by league code.
+        This function obtains the competition from the CompetitionService,
+        obtains the teams_id from the CompetitionTeamService and obtains
+        the total amount of players from the TeamPlayerService
+        
+        Arguments:
+            code : str
+                A string that represents the competition code.
+        returns:
+            total_players : int
+                An integer with the amount of players for that competition
+        """
         competition = CompetitionService.get_competition_by_code(code)
         teams_id = CompetitionTeamService.get_teams_id_by_competition_id(
             competition_id=competition.id

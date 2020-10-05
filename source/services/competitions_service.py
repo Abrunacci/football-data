@@ -38,9 +38,13 @@ class CompetitionService:
 
     @staticmethod
     def create_from_imported_data(data:dict=None):
-        """create from imported data.
+        """Create from imported data.
         This function calls the repository to insert the 
         competition on the database.
+        
+        Arguments:
+            data : dict
+                A dictionary with all the competition data.
         """
         new_competition = {
             "id" : data.get('id'),
