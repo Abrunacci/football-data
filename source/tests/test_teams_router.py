@@ -1,4 +1,5 @@
 import random
+from typing import List
 from contextlib import contextmanager
 from pytest import fixture
 from datetime import datetime
@@ -6,6 +7,7 @@ from datetime import datetime
 from unittest.mock import patch
 from source.routers.teams import TeamService
 from source.schemas.teams_schemas import TeamSchema
+from .test_players_router import player_schema
 from fastapi.testclient import TestClient
 
 from source.main import app

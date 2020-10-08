@@ -15,16 +15,16 @@ class TestCompetitionService:
         """Class teardown"""
         pass
 
-    @patch.object(CompetitionRepository, 'get_by_id')
+    @patch.object(CompetitionRepository, 'get_by_code')
     def test_get_competition_by_id(self, patched_repository_function):
         """Test get_competition_by_id.
         This functions test that CompetitionService.get_competition_by_id calls
         the CompetitionRepository.get_by_filters with the correct data
         """
-        competition_id = random.randint(0,100)
+        competition_id = 'asl'
         patched_repository_function.return_value = None
         
-        self.service.get_competition_by_id(competition_id)
+        self.service.get_competition_by_code(competition_id)
 
         patched_repository_function.assert_called_once_with(competition_id)
 

@@ -19,9 +19,9 @@ class CompetitionService:
                 An instance of CompetitionModel
         """
         competition = CompetitionRepository().get_by_code(competition_code)
-        if not competition:
-            raise HTTPException(status_code=404, detail="Competition not found")
-        return competition[0]
+        if competition:
+            competition = competition[0]
+        return competition
     
     @staticmethod
     def get_all():
