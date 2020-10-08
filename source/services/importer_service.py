@@ -68,10 +68,13 @@ class ImporterService:
         PlayerService.create_players(team_id=team_id, 
                                      team_players=team_players)
         
-
-    def import_data(self, competition_code):
+    def import_data(self, competition_code:str=None):
         """Import data
         This function coordinate the process of data import from the connector.
+        
+        Arguments:
+            competition_code : str
+                A string that represents the competition_code
         """
         competition = self.import_competitions_by_code(code=competition_code)
         teams = self.import_teams_by_competition(

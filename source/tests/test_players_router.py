@@ -52,14 +52,3 @@ class TestPlayerRouter:
             mocked_service.get_player_by_id.assert_called_once_with(
                 player_id=player_id
             )
-
-    def test_get_all(self, player_schema):
-        """This function test if the router calls the get_all
-        fuction for the PlayerSerivce."""
-        with patch_services() as mocked_service:
-            mocked_service.get_all.return_value = [player_schema]
-
-            response = client.get('/players/')
-            
-            assert response.status_code == 200
-            mocked_service.get_all.assert_called_once()

@@ -9,7 +9,8 @@ class TeamSchema(BaseModel):
     tla: str
     area_name: str
     email: str
-    players: List[PlayerSchema]
+    players: List[PlayerSchema] = None
 
     class Config:
+        arbitrary_types_allowed = True
         orm_mode = True

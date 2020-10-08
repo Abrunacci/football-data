@@ -4,8 +4,10 @@ from pytest import fixture
 from datetime import datetime
 
 from unittest.mock import patch
+from typing import List
 from source.routers.competitions import CompetitionService
 from source.schemas.competitions_schemas import CompetitionSchema
+from .test_teams_router import team_schema
 from fastapi.testclient import TestClient
 
 from source.main import app
@@ -25,7 +27,7 @@ def competition_schema():
     competition = CompetitionSchema(
         name = 'Superliga Argentina',
         code = 'ASL',
-        area_name = "Argentina"
+        area_name = "Argentina",
     )
     return competition
 
@@ -44,16 +46,16 @@ class TestCompetitionRouter:
     def test_get_by_id(self, competition_schema):
         """This function test if the router calls the get_competition_by_id
         fuction for the CompetitionSerivce with the expected parameters."""
-        competition_id = random.randint(0,1000)
+        competition_id = 'asl'
         schema = competition_schema
         with patch_services() as mocked_service:
-            mocked_service.get_competition_by_id.return_value = schema
+            mocked_service.get_competition_by_code.return_value = schema
 
             response = client.get(f'/competitions/{competition_id}')
             
             assert response.status_code == 200
-            mocked_service.get_competition_by_id.assert_called_once_with(
-                competition_id=competition_id
+            mocked_service.get_competition_by_code.assert_called_once_with(
+                competition_code=competition_id
             )
 
     def test_get_all(self, competition_schema):
