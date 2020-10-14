@@ -30,8 +30,9 @@ class ImporterService:
         base_endpoint = environ.get('EXTERNAL_API_COMPETITIONS_ENDPOINT')
         endpoint = f'{base_endpoint}/{code}'
         data = self.get_from_connector(endpoint=endpoint)
-        if data.get('errorCode') == 400:
-            raise HTTPException(status_code=404, detail='Not Found')
+        if data.get('errorCode'):
+            raise HTTPException(status_code=data.get('errorCode'), 
+                                detail=data.get('message'))
         competition = CompetitionService.create_from_imported_data(data=data)
         return competition
         
