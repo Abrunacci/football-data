@@ -54,7 +54,6 @@ class PlayerService:
                 'day_of_birth': player.get('dateOfBirth'),
                 'position': player.get('position'),
                 'nationality': player.get('nationality'),
-                'team': team_id,
                 'country_of_birth': player.get('countryOfBirth')
 
             }
