@@ -9,6 +9,31 @@ API that imports and expose football data obtained from football-data.org
     - Docker: [installation guides](https://docs.docker.com/get-docker/)
     - Docker-compose: [installation guides](https://docs.docker.com/compose/install/)
 
+
+### Environment variables:
+
+Create the environment files on `Docker/development/env`
+
+```
+touch Docker/development/env/public
+touch Docker/development/env/private
+```
+
+This is an example for `public` file:
+
+```
+POSTGRES_USER=football
+POSTGRES_PASS=data
+POSTGRES_NAME=football_data_db
+POSTGRES_HOST=db
+POSTGRES_PORT=5432
+EXTERNAL_API_URL=https://api.football-data.org/v2
+EXTERNAL_API_TOKEN=<your_api_data_token>
+EXTERNAL_API_COMPETITIONS_ENDPOINT=competitions
+EXTERNAL_API_TEAMS_ENDPOINT=teams
+```
+
+
 ### Build and run:
 
 Go to the root folder of this project and run:
