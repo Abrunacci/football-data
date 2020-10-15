@@ -13,4 +13,3 @@ class PlayerModel(BaseDBModel):
     position = Column(String)
     country_of_birth = Column(String)
     nationality = Column(String)
-    team = Column(Integer, ForeignKey('teams.id'))
